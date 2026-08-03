@@ -4,7 +4,7 @@ import { Menu, Moon, Sun, X } from 'lucide-react'
 import { Brand } from './Brand'
 import { whatsappUrl } from '../config/company'
 
-const links = [['inicio', 'Início'], ['projetos', 'Portfólio'], ['empresa', 'Quem somos'], ['servicos', 'Atuação'], ['contato', 'Contato']] as const
+const links = [['inicio', 'Início'], ['empresa', 'Quem somos'], ['servicos', 'Atuação'], ['projetos', 'Portfólio'], ['contato', 'Contato']] as const
 
 export function Header() {
   const [open, setOpen] = useState(false)

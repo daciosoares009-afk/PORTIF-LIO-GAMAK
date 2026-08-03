@@ -21,6 +21,23 @@ export function ProjectPage() {
     return () => cancelAnimationFrame(frame)
   }, [slug])
 
+  useEffect(() => {
+    const revealElements = [...document.querySelectorAll<HTMLElement>('.reveal')]
+    if (revealElements.length === 0) return
+
+    const prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReducedMotion) {
+      revealElements.forEach(element => element.classList.add('visible'))
+      return
+    }
+
+    const frame = requestAnimationFrame(() => {
+      revealElements.forEach(element => element.classList.add('visible'))
+    })
+
+    return () => cancelAnimationFrame(frame)
+  }, [slug])
+
   if (!project) return <Navigate to="/#projetos" replace />
 
   const images = project.images.length > 0 ? project.images : [project.coverImage]
