@@ -10,8 +10,8 @@ export function SiteFooter() {
         <div className="footer-brand"><Brand /><p>Portfólio de obras, reformas, instalações, manutenções e adequações.</p></div>
         <nav className="portfolio-footer-nav" aria-label="Navegação do rodapé">
           <Link to="/#projetos">Portfólio</Link>
-          <Link to="/#empresa">Quem somos</Link>
-          <Link to="/#servicos">Atuação</Link>
+          <Link to="/#quem-somos">Quem somos</Link>
+          <Link to="/#atuacao">Atuação</Link>
           <Link to="/#contato">Contato</Link>
         </nav>
         <div className="footer-contact">

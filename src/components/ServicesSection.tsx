@@ -5,7 +5,7 @@ import { SectionHeading } from './SectionHeading'
 
 export function ServicesSection() {
   return (
-    <section id="servicos" className="section services-section">
+    <section id="atuacao" className="section services-section">
       <div className="container services-intro">
         <SectionHeading
           number="05"

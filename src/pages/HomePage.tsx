@@ -69,7 +69,7 @@ export function HomePage() {
       <div ref={progressRef} className="page-progress" aria-hidden="true" />
       <Hero />
 
-      <section id="empresa" className="section about-section">
+      <section id="quem-somos" className="section about-section">
         <div className="container about-grid">
           <div className="about-visual reveal">
             <img
