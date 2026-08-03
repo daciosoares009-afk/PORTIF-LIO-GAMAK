@@ -25,16 +25,16 @@ export function Hero() {
         <div className="hero-copy">
           <span className="hero-kicker"><i /> Portfólio GAMAK</span>
           <h1 id="hero-title">Projetos executados <em>pela GAMAK.</em></h1>
-          <p>Registros reais de obras, instalações, manutenções e adequações realizadas em diferentes ambientes.</p>
+          <p>Obras, reformas, manutenções, instalações elétricas e hidráulicas, pinturas, reparos e soluções técnicas conduzidas com responsabilidade.</p>
           <div className="hero-actions">
-            <a className="button" href="#projetos">Ver projetos <ArrowDown /></a>
+            <a className="button" href="#projetos">Ver portfólio <ArrowDown /></a>
             <a className="text-link" href={whatsappUrl()} target="_blank" rel="noreferrer">Falar com a GAMAK <ArrowUpRight /></a>
           </div>
         </div>
         <aside className="hero-context" aria-label="Conteúdo do portfólio">
           <span className="hero-context-label">Neste portfólio</span>
-          <div><strong>Obras</strong><strong>Instalações</strong><strong>Manutenções</strong></div>
-          <p>Fotografias do acervo real da empresa.</p>
+          <div><strong>Obras</strong><strong>Reformas</strong><strong>Manutenções</strong><strong>Instalações</strong></div>
+          <p>Registros reais de serviços executados pela empresa.</p>
         </aside>
       </div>
     </section>

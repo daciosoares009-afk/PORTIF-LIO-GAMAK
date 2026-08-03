@@ -8,7 +8,7 @@ export function ServicesSection() {
     <section id="servicos" className="section services-section">
       <div className="container services-intro">
         <SectionHeading
-          number="04"
+          number="05"
           eyebrow="O que fazemos"
           title="Áreas de atuação."
           copy="Serviços executados de acordo com a necessidade de cada ambiente."

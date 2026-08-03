@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState, type MouseEvent } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { Menu, Moon, Sun, X } from 'lucide-react'
 import { Brand } from './Brand'
 import { whatsappUrl } from '../config/company'
 
-const links = [['inicio', 'Início'], ['projetos', 'Projetos'], ['empresa', 'Quem somos'], ['servicos', 'Atuação'], ['contato', 'Contato']] as const
+const links = [['inicio', 'Início'], ['projetos', 'Portfólio'], ['empresa', 'Quem somos'], ['servicos', 'Atuação'], ['contato', 'Contato']] as const
 
 export function Header() {
   const [open, setOpen] = useState(false)
@@ -12,17 +13,30 @@ export function Header() {
   const [dark, setDark] = useState(() => document.documentElement.dataset.theme === 'dark')
   const menuButtonRef = useRef<HTMLButtonElement>(null)
   const navRef = useRef<HTMLElement>(null)
+  const location = useLocation()
+  const navigate = useNavigate()
+  const isHome = location.pathname === '/'
 
   useEffect(() => {
     const onScroll = () => setScrolled(scrollY > 32)
-    onScroll(); addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+    addEventListener('scroll', onScroll, { passive: true })
+
+    if (!isHome) {
+      setActive('')
+      return () => removeEventListener('scroll', onScroll)
+    }
+
     const sections = links.map(([id]) => document.getElementById(id)).filter(Boolean) as HTMLElement[]
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => entry.isIntersecting && setActive(entry.target.id))
     }, { rootMargin: '-35% 0px -55%' })
     sections.forEach(section => observer.observe(section))
-    return () => { removeEventListener('scroll', onScroll); observer.disconnect() }
-  }, [])
+    return () => {
+      removeEventListener('scroll', onScroll)
+      observer.disconnect()
+    }
+  }, [isHome, location.pathname])
 
   useEffect(() => {
     document.body.classList.toggle('menu-open', open)
@@ -70,18 +84,25 @@ export function Header() {
     document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next ? '#00131F' : '#FFFDF8')
   }
 
-  const navigateFromMenu = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
-    if (!open) return
+  const goToSection = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
     event.preventDefault()
     setOpen(false)
     document.body.classList.remove('menu-open')
-    requestAnimationFrame(() => {
+
+    const scrollToSection = () => {
       document.getElementById(id)?.scrollIntoView({
         behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
         block: 'start',
       })
+    }
+
+    if (isHome) {
+      requestAnimationFrame(scrollToSection)
       history.replaceState(null, '', `#${id}`)
-    })
+      return
+    }
+
+    navigate(`/#${id}`)
   }
 
   return (
@@ -90,7 +111,18 @@ export function Header() {
         <Brand />
         <nav ref={navRef} id="main-navigation" className={open ? 'open' : ''} aria-label="Navegação principal">
           <span className="nav-caption">Navegação</span>
-          {links.map(([id, label], index) => <a key={id} href={`#${id}`} className={active === id ? 'active' : ''} aria-current={active === id ? 'page' : undefined} onClick={event => navigateFromMenu(event, id)}><small>{String(index + 1).padStart(2, '0')}</small>{label}</a>)}
+          {links.map(([id, label], index) => (
+            <a
+              key={id}
+              href={isHome ? `#${id}` : `/#${id}`}
+              className={isHome && active === id ? 'active' : ''}
+              aria-current={isHome && active === id ? 'page' : undefined}
+              onClick={event => goToSection(event, id)}
+            >
+              <small>{String(index + 1).padStart(2, '0')}</small>
+              {label}
+            </a>
+          ))}
           <a className="button nav-cta" href={whatsappUrl()} target="_blank" rel="noreferrer">Falar no WhatsApp</a>
         </nav>
         <div className="header-actions">

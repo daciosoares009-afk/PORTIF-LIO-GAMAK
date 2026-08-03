@@ -164,7 +164,7 @@ img { max-width: 100%; }
 
 /* About */
 .about-section { background: var(--paper); }
-.about-section::after { content: "03"; position: absolute; right: max(24px, calc((100vw - var(--container)) / 2)); top: 45px; color: color-mix(in srgb, var(--ink) 5%, transparent); font-size: clamp(8rem, 17vw, 16rem); line-height: 1; font-weight: 800; pointer-events: none; }
+.about-section::after { content: "04"; position: absolute; right: max(24px, calc((100vw - var(--container)) / 2)); top: 45px; color: color-mix(in srgb, var(--ink) 5%, transparent); font-size: clamp(8rem, 17vw, 16rem); line-height: 1; font-weight: 800; pointer-events: none; }
 .about-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(360px, 0.88fr) minmax(0, 1.12fr); gap: clamp(60px, 9vw, 130px); align-items: center; }
 .about-visual { position: relative; width: 100%; height: auto; aspect-ratio: 816 / 1145; overflow: hidden; background: #011c33; border: 1px solid color-mix(in srgb, var(--gold-500) 35%, transparent); box-shadow: var(--shadow-lg); }
 .brand-artwork { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; }
@@ -222,13 +222,19 @@ img { max-width: 100%; }
 .filters button.active { border-color: var(--gold-500); background: var(--gold-500); color: var(--navy-950); font-weight: 800; }
 .project-result { color: #b6c4c8; font-size: 0.75rem; white-space: nowrap; }
 .project-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: 255px; gap: 14px; animation: gallery-enter 380ms var(--ease) both; }
-.project-card { grid-column: span 4; position: relative; min-width: 0; overflow: hidden; padding: 0; border: 0; background: #0a2b3a; color: var(--cream-100); text-align: left; cursor: pointer; isolation: isolate; }
+.project-card { grid-column: span 4; position: relative; min-width: 0; overflow: hidden; background: #0a2b3a; color: var(--cream-100); isolation: isolate; transition: transform var(--fast) var(--ease), box-shadow var(--fast); }
+.project-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28); }
+.project-card-link { display: block; width: 100%; height: 100%; min-height: 255px; padding: 0; border: 0; background: transparent; color: inherit; text-align: left; cursor: pointer; position: relative; isolation: isolate; }
+.project-card-link > img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.project-card-link:focus-visible { outline: none; }
+.project-card-link:focus-visible::before { content: ""; position: absolute; z-index: 4; inset: 0; border: 2px solid var(--gold-400); pointer-events: none; }
 .project-card--featured { grid-column: span 8; grid-row: span 2; }
 .project-card--wide { grid-column: span 8; }
 .project-card img { width: 100%; height: 100%; display: block; object-fit: cover; filter: saturate(0.98) contrast(1.015); transition: transform 650ms var(--ease), filter var(--medium); }
-.project-card::after { content: ""; position: absolute; z-index: 1; inset: 25% 0 0; background: linear-gradient(transparent, rgba(0, 16, 25, 0.92)); }
-.project-card::before { content: ""; position: absolute; z-index: 2; inset: 0; border: 1px solid transparent; transition: border-color var(--fast); }
-.project-card:hover img { transform: scale(1.035); filter: saturate(1.04) contrast(1.01); }
+.project-card-link > img { position: absolute; inset: 0; }
+.project-card::after { content: ""; position: absolute; z-index: 1; inset: 15% 0 0; background: linear-gradient(transparent, rgba(0, 16, 25, 0.94)); pointer-events: none; }
+.project-card::before { content: ""; position: absolute; z-index: 2; inset: 0; border: 1px solid transparent; transition: border-color var(--fast); pointer-events: none; }
+.project-card:hover img { transform: scale(1.04); filter: saturate(1.04) contrast(1.01); }
 .project-card:hover::before { border-color: rgba(226,184,95,.65); }
 .project-index { position: absolute; z-index: 3; top: 18px; left: 20px; color: rgba(255,249,236,.82); font-size: 0.68rem; letter-spacing: 0.08em; }
 .project-card-copy { position: absolute; z-index: 3; left: 22px; right: 58px; bottom: 20px; display: grid; gap: 5px; }
