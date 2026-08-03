@@ -304,6 +304,11 @@ section[id], article[id] { scroll-margin-top: 110px; }
 .featured-project-link svg { width: 16px; transition: transform var(--fast); }
 .featured-project-link:hover svg { transform: translateX(3px); }
  
+.not-found-section { background: var(--paper); }
+.not-found-layout { display: grid; gap: 28px; align-items: center; }
+.not-found-actions { display: flex; flex-wrap: wrap; gap: 16px; }
+.not-found-actions .button { min-width: 180px; }
+ 
 /* Featured projects */
 .projects-section::before { content: ""; position: absolute; inset: 0; opacity: 0.08; background-image: linear-gradient(rgba(255,255,255,.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.2) 1px, transparent 1px); background-size: 84px 84px; mask-image: linear-gradient(90deg, transparent 20%, #000 100%); pointer-events: none; }
 .projects-section .section-heading { margin-bottom: 0; }
