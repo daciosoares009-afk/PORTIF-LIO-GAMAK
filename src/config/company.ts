@@ -1,6 +1,8 @@
 export const company = {
   name: 'GAMAK',
   legalName: 'GAMAK Soluções em Engenharia',
+  website: 'https://gamak-engenharia.vercel.app',
+  description: 'Obras, instalações, manutenções e adequações conduzidas com planejamento e responsabilidade técnica.',
   phoneDisplay: '+55 (11) 97029-1800',
   phoneDigits: '5511970291800',
   email: 'gamakengenharia@gmail.com',

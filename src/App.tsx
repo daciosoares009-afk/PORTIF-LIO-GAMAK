@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { ArrowRight, Check, Mail, Phone } from 'lucide-react'
 import { ContactForm } from './components/ContactForm'
 import { Header } from './components/Header'
@@ -12,23 +12,43 @@ import { company, whatsappUrl } from './config/company'
 import { differentials, processSteps } from './data/content'
 
 function App() {
-  const [progress, setProgress] = useState(0)
+  const progressRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const reveal = new IntersectionObserver(
-      entries => entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible')),
-      { threshold: 0.12 },
-    )
-    document.querySelectorAll('.reveal').forEach(element => reveal.observe(element))
+    const revealElements = [...document.querySelectorAll<HTMLElement>('.reveal')]
+    let reveal: IntersectionObserver | undefined
 
+    if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      reveal = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return
+          entry.target.classList.add('visible')
+          reveal?.unobserve(entry.target)
+        })
+      }, { threshold: 0.12, rootMargin: '0px 0px -24px' })
+      revealElements.forEach(element => {
+        if (element.getBoundingClientRect().top < innerHeight) element.classList.add('visible')
+        else reveal?.observe(element)
+      })
+    } else {
+      revealElements.forEach(element => element.classList.add('visible'))
+    }
+
+    let frame = 0
     const onScroll = () => {
-      const available = document.documentElement.scrollHeight - innerHeight
-      setProgress(available > 0 ? Math.min(scrollY / available, 1) : 0)
+      if (frame) return
+      frame = requestAnimationFrame(() => {
+        const available = document.documentElement.scrollHeight - innerHeight
+        const progress = available > 0 ? Math.min(scrollY / available, 1) : 0
+        progressRef.current?.style.setProperty('--page-progress', String(progress))
+        frame = 0
+      })
     }
     onScroll()
     addEventListener('scroll', onScroll, { passive: true })
     return () => {
-      reveal.disconnect()
+      reveal?.disconnect()
+      cancelAnimationFrame(frame)
       removeEventListener('scroll', onScroll)
     }
   }, [])
@@ -36,7 +56,7 @@ function App() {
   return (
     <>
       <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
-      <div className="page-progress" style={{ transform: `scaleX(${progress})` }} aria-hidden="true" />
+      <div ref={progressRef} className="page-progress" aria-hidden="true" />
       <Header />
       <main id="conteudo">
         <Hero />
@@ -108,7 +128,7 @@ function App() {
           <div className="container cta-layout reveal">
             <span className="cta-index">Próxima etapa · avaliação</span>
             <div><h2>Uma solução segura começa com uma conversa clara.</h2><p>Apresente sua necessidade para a GAMAK e receba um atendimento direcionado ao contexto do serviço.</p></div>
-            <div className="cta-actions"><a className="button button-light" href={whatsappUrl()} target="_blank" rel="noreferrer"><img className="whatsapp-logo-inline" src="/images/social/whatsapp-logo.png" alt="" width="180" height="180" /> Falar pelo WhatsApp</a><a className="button button-outline-light" href={`mailto:${company.email}`}><Mail /> Enviar e-mail</a></div>
+            <div className="cta-actions"><a className="button button-light" href={whatsappUrl()} target="_blank" rel="noreferrer"><img className="whatsapp-logo-inline" src="/images/social/whatsapp-logo.png" alt="" width="179" height="148" /> Falar pelo WhatsApp</a><a className="button button-outline-light" href={`mailto:${company.email}`}><Mail /> Enviar e-mail</a></div>
           </div>
         </section>
 
@@ -127,9 +147,20 @@ function App() {
         </section>
       </main>
       <SiteFooter />
-      <a className="floating-whatsapp" href={whatsappUrl()} target="_blank" rel="noreferrer" aria-label="Falar com a GAMAK pelo WhatsApp"><img src="/images/social/whatsapp-logo.png" alt="" width="180" height="180" /></a>
+      <a className="floating-whatsapp" href={whatsappUrl()} target="_blank" rel="noreferrer" aria-label="Falar com a GAMAK pelo WhatsApp"><img src="/images/social/whatsapp-logo.png" alt="" width="179" height="148" /></a>
       <MobileContactBar />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'ProfessionalService', name: company.legalName, telephone: company.phoneDisplay, email: company.email }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'ProfessionalService',
+        name: company.legalName,
+        url: company.website,
+        logo: `${company.website}/images/brand/gamak-logo-oficial.png`,
+        image: `${company.website}/images/projects/optimized/projeto-esteira-rolante-03-1440.webp`,
+        description: company.description,
+        telephone: company.phoneDisplay,
+        email: company.email,
+        serviceType: ['Obras e reformas', 'Instalações elétricas', 'Instalações hidráulicas', 'Manutenção preventiva e corretiva', 'Adequações comerciais', 'Infraestrutura e equipamentos'],
+      }) }} />
     </>
   )
 }

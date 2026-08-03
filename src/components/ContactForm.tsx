@@ -59,20 +59,22 @@ export function ContactForm() {
     'aria-invalid': Boolean(errors[name]),
     'aria-describedby': errors[name] ? `${name}-error` : undefined,
     onInput: () => clearError(name),
+    required: true,
   })
 
   return (
     <form className="contact-form reveal" onSubmit={submit} noValidate aria-busy={preparing}>
       <div className="form-intro"><span>Solicitação de avaliação</span><small>Etapa única · conclusão pelo WhatsApp</small></div>
+      <p className="required-note"><span aria-hidden="true">*</span> Campos obrigatórios</p>
       <div className="field-row">
-        <label>Nome completo<input name="name" autoComplete="name" placeholder="Como podemos chamar você?" {...fieldProps('name')} />{errors.name && <span className="field-error" id="name-error">{errors.name}</span>}</label>
-        <label>Telefone<input name="phone" type="tel" inputMode="tel" autoComplete="tel" value={phone} onChange={handlePhone} placeholder="(00) 00000-0000" aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? 'phone-error' : undefined} />{errors.phone && <span className="field-error" id="phone-error">{errors.phone}</span>}</label>
+        <label>Nome completo <span className="required-mark" aria-hidden="true">*</span><input name="name" autoComplete="name" placeholder="Como podemos chamar você?" {...fieldProps('name')} />{errors.name && <span className="field-error" id="name-error">{errors.name}</span>}</label>
+        <label>Telefone <span className="required-mark" aria-hidden="true">*</span><input name="phone" type="tel" inputMode="tel" autoComplete="tel" value={phone} onChange={handlePhone} placeholder="(00) 00000-0000" required aria-required="true" aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? 'phone-error' : undefined} />{errors.phone && <span className="field-error" id="phone-error">{errors.phone}</span>}</label>
       </div>
-      <label>E-mail<input name="email" type="email" autoComplete="email" placeholder="voce@empresa.com.br" {...fieldProps('email')} />{errors.email && <span className="field-error" id="email-error">{errors.email}</span>}</label>
-      <label>Tipo de serviço<select name="service" defaultValue="" {...fieldProps('service')}><option value="" disabled>Selecione uma opção</option>{services.map(service => <option key={service.title}>{service.title}</option>)}</select>{errors.service && <span className="field-error" id="service-error">{errors.service}</span>}</label>
-      <label>Mensagem<textarea name="message" rows={5} placeholder="Descreva brevemente sua necessidade e o tipo de ambiente." {...fieldProps('message')} />{errors.message && <span className="field-error" id="message-error">{errors.message}</span>}</label>
-      <button className="button form-submit" type="submit" disabled={preparing}>{preparing ? 'Preparando conversa…' : 'Continuar pelo WhatsApp'} <Send /></button>
-      {status && <p className="form-status" role="status">{status}</p>}
+      <label>E-mail <span className="required-mark" aria-hidden="true">*</span><input name="email" type="email" autoComplete="email" placeholder="voce@empresa.com.br" {...fieldProps('email')} />{errors.email && <span className="field-error" id="email-error">{errors.email}</span>}</label>
+      <label>Tipo de serviço <span className="required-mark" aria-hidden="true">*</span><select name="service" defaultValue="" {...fieldProps('service')}><option value="" disabled>Selecione uma opção</option>{services.map(service => <option key={service.title}>{service.title}</option>)}</select>{errors.service && <span className="field-error" id="service-error">{errors.service}</span>}</label>
+      <label>Mensagem <span className="required-mark" aria-hidden="true">*</span><textarea name="message" rows={5} placeholder="Descreva brevemente sua necessidade e o tipo de ambiente." {...fieldProps('message')} />{errors.message && <span className="field-error" id="message-error">{errors.message}</span>}</label>
+      <button className="button form-submit" type="submit" disabled={preparing}>{preparing ? 'Preparando conversa…' : 'Continuar atendimento no WhatsApp'} <Send aria-hidden="true" /></button>
+      <p className="form-status" aria-live="polite" aria-atomic="true">{status}</p>
       <small className="privacy-note">Nenhuma mensagem é enviada automaticamente. Você revisará o texto antes de enviar no WhatsApp.</small>
     </form>
   )

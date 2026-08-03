@@ -28,6 +28,12 @@ const images = [
 
 await mkdir(outputDir, { recursive: true })
 
+await Promise.all([480, 960].map(width => sharp(path.resolve('public/images/brand/gamak-logo-oficial.png'))
+  .extract({ left: 120, top: 205, width: 1500, height: 420 })
+  .resize({ width, height: Math.round(width * 0.28), fit: 'contain', background: '#001c33' })
+  .webp({ quality: 91, effort: 5 })
+  .toFile(path.resolve(`public/images/brand/gamak-logo-header-${width}.webp`))))
+
 await Promise.all(images.flatMap(([source, name]) => {
   const input = path.join(sourceDir, source)
   return [480, 960, 1440].map(width => sharp(input)
@@ -38,4 +44,4 @@ await Promise.all(images.flatMap(([source, name]) => {
     .toFile(path.join(outputDir, `${name}-${width}.webp`)))
 }))
 
-console.log(`Generated ${images.length * 3} optimized images in ${outputDir}`)
+console.log(`Generated the header logo and ${images.length * 3} optimized project images in ${outputDir}`)
