@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { ArrowRight, Check, Mail, Phone } from 'lucide-react'
-import { ContactForm } from './components/ContactForm'
+import { ArrowUpRight, Mail, Phone } from 'lucide-react'
 import { Header } from './components/Header'
 import { Hero } from './components/Hero'
 import { MobileContactBar } from './components/MobileContactBar'
@@ -9,7 +8,6 @@ import { SectionHeading } from './components/SectionHeading'
 import { ServicesSection } from './components/ServicesSection'
 import { SiteFooter } from './components/SiteFooter'
 import { company, whatsappUrl } from './config/company'
-import { differentials, processSteps } from './data/content'
 
 function App() {
   const progressRef = useRef<HTMLDivElement>(null)
@@ -60,6 +58,7 @@ function App() {
       <Header />
       <main id="conteudo">
         <Hero />
+        <ProjectGallery />
 
         <section id="empresa" className="section about-section">
           <div className="container about-grid">
@@ -75,74 +74,35 @@ function App() {
                 loading="lazy"
                 decoding="async"
               />
+              <div className="about-visual-caption">
+                <span>GAMAK · Soluções em Engenharia</span>
+                <p>Compromisso com a excelência e inovação para construir o futuro.</p>
+              </div>
             </div>
             <div className="about-copy reveal">
-              <SectionHeading number="02" eyebrow="Sobre a GAMAK" title="Critério técnico em cada decisão." />
-              <p className="lead">A GAMAK desenvolve soluções em engenharia para obras, instalações e manutenções, conduzindo cada serviço com planejamento, conhecimento técnico e responsabilidade.</p>
-              <p>Nossa atuação começa pela compreensão da necessidade e avança por etapas claras, da avaliação inicial à inspeção final.</p>
-              <dl className="principles">
-                <div><dt>01</dt><dd><strong>Planejamento</strong><span>Leitura do contexto antes da execução.</span></dd></div>
-                <div><dt>02</dt><dd><strong>Responsabilidade</strong><span>Atenção técnica durante todo o serviço.</span></dd></div>
-                <div><dt>03</dt><dd><strong>Clareza</strong><span>Comunicação objetiva em cada etapa.</span></dd></div>
-              </dl>
+              <SectionHeading number="03" eyebrow="Quem somos" title="Engenharia feita com responsabilidade e atenção aos detalhes." />
+              <p className="lead">A GAMAK atua com soluções de engenharia civil para obras, instalações, manutenções e adequações em diferentes tipos de ambiente.</p>
+              <p>Cada trabalho começa pela compreensão da necessidade e segue com planejamento, conhecimento técnico e acompanhamento das etapas. Nosso objetivo é entregar soluções coerentes com o espaço, o uso e a realidade de cada serviço.</p>
+              <div className="about-promise" aria-label="Compromissos da GAMAK">
+                <span>Entregamos confiança.</span>
+                <span>Entregamos qualidade.</span>
+                <span>Entregamos soluções.</span>
+              </div>
             </div>
           </div>
         </section>
 
         <ServicesSection />
-        <ProjectGallery />
 
-        <section className="section process-section">
-          <div className="container process-layout">
-            <div className="process-intro">
-              <SectionHeading number="05" eyebrow="Nosso processo" title="Clareza do primeiro contato à entrega." copy="Um fluxo simples, com decisões organizadas e acompanhamento em todas as etapas." />
-              <a className="text-link dark-link" href="#contato">Apresentar uma necessidade <ArrowRight /></a>
+        <section id="contato" className="section portfolio-contact">
+          <div className="container portfolio-contact-layout reveal">
+            <div>
+              <SectionHeading number="05" eyebrow="Contato" title="Tem um serviço para realizar?" copy="Fale diretamente com a GAMAK e apresente sua necessidade." />
             </div>
-            <ol className="process-list">
-              {processSteps.map(([number, title, description], index) => (
-                <li className="process-step reveal" style={{ '--delay': `${index * 60}ms` } as React.CSSProperties} key={number}>
-                  <span>{number}</span><div><h3>{title}</h3><p>{description}</p></div>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-
-        <section className="section differentials-section">
-          <div className="container differentials-layout">
-            <div className="differentials-copy">
-              <SectionHeading number="06" eyebrow="Critérios de trabalho" title="Confiança construída no processo." />
-              <p>Organização, diálogo e cuidado técnico são partes inseparáveis de uma entrega confiável.</p>
+            <div className="portfolio-contact-actions">
+              <a className="button" href={whatsappUrl()} target="_blank" rel="noreferrer"><Phone aria-hidden="true" /> Falar pelo WhatsApp <ArrowUpRight aria-hidden="true" /></a>
+              <a className="portfolio-email" href={`mailto:${company.email}`}><Mail aria-hidden="true" /> {company.email}</a>
             </div>
-            <div className="differentials-list">
-              {differentials.map(({ title, Icon }, index) => (
-                <div className="differential reveal" style={{ '--delay': `${index * 45}ms` } as React.CSSProperties} key={title}>
-                  <span>{String(index + 1).padStart(2, '0')}</span><Icon /><strong>{title}</strong><Check />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="cta-section">
-          <div className="container cta-layout reveal">
-            <span className="cta-index">Próxima etapa · avaliação</span>
-            <div><h2>Uma solução segura começa com uma conversa clara.</h2><p>Apresente sua necessidade para a GAMAK e receba um atendimento direcionado ao contexto do serviço.</p></div>
-            <div className="cta-actions"><a className="button button-light" href={whatsappUrl()} target="_blank" rel="noreferrer"><img className="whatsapp-logo-inline" src="/images/social/whatsapp-logo.png" alt="" width="179" height="148" /> Falar pelo WhatsApp</a><a className="button button-outline-light" href={`mailto:${company.email}`}><Mail /> Enviar e-mail</a></div>
-          </div>
-        </section>
-
-        <section id="contato" className="section contact-section">
-          <div className="container contact-grid">
-            <div className="contact-copy reveal">
-              <SectionHeading number="07" eyebrow="Contato" title="Conte o que o seu projeto exige." copy="Envie as informações iniciais. O atendimento continuará pelo WhatsApp, sem simular um envio por servidor." />
-              <div className="contact-links">
-                <a href={whatsappUrl()} target="_blank" rel="noreferrer"><Phone /><span><small>Telefone e WhatsApp</small><strong>{company.phoneDisplay}</strong></span></a>
-                <a href={`mailto:${company.email}`}><Mail /><span><small>E-mail</small><strong>{company.email}</strong></span></a>
-              </div>
-              <p className="contact-note">Atendimento para demandas residenciais, comerciais e empresariais.</p>
-            </div>
-            <ContactForm />
           </div>
         </section>
       </main>

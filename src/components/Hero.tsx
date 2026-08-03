@@ -23,23 +23,19 @@ export function Hero() {
       <div className="hero-blueprint" aria-hidden="true"><i /><i /><i /></div>
       <div className="container hero-layout">
         <div className="hero-copy">
-          <span className="hero-kicker"><i /> GAMAK · Soluções em Engenharia</span>
-          <h1 id="hero-title">Obras e instalações <em>com precisão.</em></h1>
-          <p>Execução, manutenção e adequação de ambientes residenciais, comerciais e empresariais, do planejamento à entrega.</p>
+          <span className="hero-kicker"><i /> Portfólio GAMAK</span>
+          <h1 id="hero-title">Projetos executados <em>pela GAMAK.</em></h1>
+          <p>Registros reais de obras, instalações, manutenções e adequações realizadas em diferentes ambientes.</p>
           <div className="hero-actions">
-            <a className="button" href={whatsappUrl()} target="_blank" rel="noreferrer">Solicitar uma avaliação <ArrowUpRight /></a>
-            <a className="text-link" href="#projetos">Conhecer projetos <ArrowDown /></a>
+            <a className="button" href="#projetos">Ver projetos <ArrowDown /></a>
+            <a className="text-link" href={whatsappUrl()} target="_blank" rel="noreferrer">Falar com a GAMAK <ArrowUpRight /></a>
           </div>
         </div>
-        <aside className="hero-context" aria-label="Áreas de atuação">
-          <span className="hero-context-label">Atuação técnica</span>
-          <div><strong>Residencial</strong><strong>Comercial</strong><strong>Empresarial</strong></div>
-          <p>Planejamento, execução e acompanhamento em cada etapa.</p>
+        <aside className="hero-context" aria-label="Conteúdo do portfólio">
+          <span className="hero-context-label">Neste portfólio</span>
+          <div><strong>Obras</strong><strong>Instalações</strong><strong>Manutenções</strong></div>
+          <p>Fotografias do acervo real da empresa.</p>
         </aside>
-      </div>
-      <div className="container hero-footnote">
-        <span>Obras</span><i /> <span>Instalações</span><i /> <span>Manutenções</span>
-        <b>01 — Engenharia com método</b>
       </div>
     </section>
   )

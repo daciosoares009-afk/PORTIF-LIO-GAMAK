@@ -3,7 +3,7 @@ import { Menu, Moon, Sun, X } from 'lucide-react'
 import { Brand } from './Brand'
 import { whatsappUrl } from '../config/company'
 
-const links = [['inicio', 'Início'], ['empresa', 'Empresa'], ['servicos', 'Serviços'], ['projetos', 'Projetos'], ['contato', 'Contato']] as const
+const links = [['inicio', 'Início'], ['projetos', 'Projetos'], ['empresa', 'Quem somos'], ['servicos', 'Atuação'], ['contato', 'Contato']] as const
 
 export function Header() {
   const [open, setOpen] = useState(false)
@@ -91,7 +91,7 @@ export function Header() {
         <nav ref={navRef} id="main-navigation" className={open ? 'open' : ''} aria-label="Navegação principal">
           <span className="nav-caption">Navegação</span>
           {links.map(([id, label], index) => <a key={id} href={`#${id}`} className={active === id ? 'active' : ''} aria-current={active === id ? 'page' : undefined} onClick={event => navigateFromMenu(event, id)}><small>{String(index + 1).padStart(2, '0')}</small>{label}</a>)}
-          <a className="button nav-cta" href={whatsappUrl()} target="_blank" rel="noreferrer">Solicitar avaliação</a>
+          <a className="button nav-cta" href={whatsappUrl()} target="_blank" rel="noreferrer">Falar no WhatsApp</a>
         </nav>
         <div className="header-actions">
           <button type="button" className="icon-button" onClick={toggleTheme} aria-label={dark ? 'Ativar tema claro' : 'Ativar tema escuro'} aria-pressed={dark}>{dark ? <Sun /> : <Moon />}</button>

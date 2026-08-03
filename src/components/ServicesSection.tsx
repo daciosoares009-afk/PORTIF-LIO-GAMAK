@@ -8,10 +8,10 @@ export function ServicesSection() {
     <section id="servicos" className="section services-section">
       <div className="container services-intro">
         <SectionHeading
-          number="03"
-          eyebrow="Áreas de atuação"
-          title="Soluções técnicas organizadas para cada contexto."
-          copy="Da intervenção pontual à execução de escopos mais amplos, cada serviço parte da leitura cuidadosa da necessidade e do ambiente."
+          number="04"
+          eyebrow="O que fazemos"
+          title="Áreas de atuação."
+          copy="Serviços executados de acordo com a necessidade de cada ambiente."
         />
         <p className="services-note">Atendimento a demandas residenciais, comerciais e empresariais.</p>
       </div>

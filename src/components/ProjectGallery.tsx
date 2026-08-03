@@ -84,7 +84,7 @@ export function ProjectGallery() {
     <section id="projetos" className="section projects-section">
       <div className="container">
         <div className="projects-intro">
-          <SectionHeading number="04" eyebrow="Portfólio técnico" title="Execução real. Resultado visível." copy="Registros de obras, instalações e manutenções executadas pela GAMAK em diferentes contextos de atuação." />
+          <SectionHeading number="02" eyebrow="Portfólio" title="Projetos realizados." copy="Uma seleção de obras, instalações e manutenções executadas pela GAMAK." />
           <div className="projects-aside"><strong>{String(projects.length).padStart(2, '0')}</strong><span>registros técnicos<br />no acervo</span></div>
         </div>
         <>
