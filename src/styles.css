@@ -189,6 +189,33 @@ img { max-width: 100%; }
 .services-intro { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 60px; align-items: end; }
 .services-note { margin: 0 0 52px; padding-left: 20px; border-left: 1px solid var(--gold-500); color: var(--muted); font-size: 0.875rem; }
 .service-list { border-top: 1px solid var(--line-strong); }
+
+/* Process */
+.process-section { background: var(--paper); }
+.process-layout { display: grid; grid-template-columns: minmax(300px, .72fr) minmax(0, 1.28fr); gap: clamp(70px, 10vw, 140px); align-items: start; }
+.process-intro { position: sticky; top: 130px; }
+.process-intro .section-heading { margin-bottom: 20px; }
+.process-note { max-width: 500px; margin: 0; padding-left: 20px; border-left: 1px solid var(--gold-500); color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
+.process-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-strong); }
+.process-step { --delay: 0ms; display: grid; grid-template-columns: 56px 1fr; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--line); transition-delay: var(--delay); }
+.process-step > span { color: var(--gold-text); font-size: .72rem; letter-spacing: .08em; font-weight: 800; }
+.process-step h3 { margin: 0 0 8px; font-size: 1rem; font-weight: 650; }
+.process-step p { margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.7; }
+
+/* Differentials */
+.differentials-section { background: var(--navy-900); color: var(--cream-100); }
+.differentials-section::after { content: ""; position: absolute; right: -12vw; top: -36vw; width: 55vw; height: 75vw; border-left: 1px solid rgba(207,155,53,.24); transform: rotate(24deg); pointer-events: none; }
+.differentials-layout { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(300px, .82fr) minmax(0, 1.18fr); gap: clamp(70px, 10vw, 140px); align-items: center; }
+.differentials-section .section-heading h2 { color: var(--cream-100); }
+.differentials-section .eyebrow { color: var(--gold-400); }
+.differentials-section .eyebrow b { color: #76909b; }
+.differentials-copy > p { max-width: 500px; color: #aebdc2; }
+.differentials-list { border-top: 1px solid rgba(255,255,255,.18); }
+.differential { --delay: 0ms; display: grid; grid-template-columns: 42px 24px 1fr 18px; gap: 14px; align-items: center; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,.13); transition-delay: var(--delay); }
+.differential > span { color: #718791; font-size: .57rem; font-weight: 700; letter-spacing: .08em; }
+.differential > svg { width: 18px; color: var(--gold-400); }
+.differential > svg:last-child { justify-self: end; opacity: .72; }
+.differential strong { font-size: .9rem; font-weight: 600; }
 .service-row { --delay: 0ms; display: grid; grid-template-columns: 58px 54px minmax(0, 1fr) auto; gap: 24px; align-items: center; min-height: 174px; padding: 28px 12px 28px 0; border-bottom: 1px solid var(--line); transition: padding var(--medium) var(--ease), background var(--medium); transition-delay: var(--delay); }
 .service-row:hover { padding-left: 16px; background: color-mix(in srgb, var(--surface) 56%, transparent); }
 .service-number { align-self: start; padding-top: 8px; color: var(--gold-text); font-size: 0.68rem; letter-spacing: 0.08em; }
@@ -205,6 +232,21 @@ img { max-width: 100%; }
 
 /* Projects */
 .projects-section { background: var(--navy-950); color: var(--cream-100); }
+
+/* Project details */
+.project-detail-content { margin-top: clamp(42px, 5vw, 64px); }
+.project-detail-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.project-detail-card { position: relative; display: grid; gap: 12px; padding: clamp(24px, 3vw, 32px); border: 1px solid var(--line); background: color-mix(in srgb, var(--surface) 86%, transparent); box-shadow: var(--shadow-sm); }
+.project-detail-card::before { content: ""; position: absolute; inset: 0; border-left: 3px solid var(--gold-500); opacity: 0; transition: opacity var(--fast); }
+.project-detail-card:hover::before { opacity: 1; }
+.project-detail-card-icon { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid color-mix(in srgb, var(--gold-500) 44%, transparent); color: var(--gold-text); background: color-mix(in srgb, var(--surface-soft) 78%, transparent); }
+.project-detail-card-icon svg { width: 18px; height: 18px; }
+.project-detail-card h2 { margin: 0; color: var(--ink); font-size: 1.1rem; line-height: 1.35; }
+.project-detail-card p, .project-detail-card li { margin: 0; color: var(--muted); font-size: 0.95rem; line-height: 1.75; }
+.project-services-list { margin: 0; padding-left: 18px; display: grid; gap: 7px; }
+.project-before-after { margin-top: clamp(38px, 4.4vw, 56px); }
+
+/* Featured projects */
 .projects-section::before { content: ""; position: absolute; inset: 0; opacity: 0.08; background-image: linear-gradient(rgba(255,255,255,.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.2) 1px, transparent 1px); background-size: 84px 84px; mask-image: linear-gradient(90deg, transparent 20%, #000 100%); pointer-events: none; }
 .projects-section .section-heading { margin-bottom: 0; }
 .projects-section .section-heading h2 { color: var(--cream-100); }
@@ -423,6 +465,9 @@ img { max-width: 100%; }
   .principles { margin-top: 32px; }
   .services-intro { grid-template-columns: 1fr; gap: 0; }
   .services-note { margin: -20px 0 44px; }
+  .process-layout, .differentials-layout { grid-template-columns: 1fr; gap: 50px; }
+  .process-intro { position: static; }
+  .project-detail-grid { grid-template-columns: 1fr; }
   .service-row { min-height: 0; grid-template-columns: 40px 48px 1fr; gap: 18px; padding: 25px 0; }
   .service-copy { grid-template-columns: 1fr; gap: 10px; }
   .service-copy small { grid-column: 1; }
@@ -490,6 +535,7 @@ img { max-width: 100%; }
   .project-expand { opacity: 1; transform: none; }
   .process-step { grid-template-columns: 48px 1fr; gap: 14px; }
   .differential { grid-template-columns: 30px 28px 1fr 18px; gap: 11px; }
+  .project-detail-card { padding: 22px; }
   .cta-actions { display: grid; }
   .field-row { grid-template-columns: 1fr; gap: 0; }
   .contact-form { padding: 25px 20px; }

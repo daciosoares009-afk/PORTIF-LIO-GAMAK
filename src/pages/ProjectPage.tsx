@@ -111,32 +111,63 @@ export function ProjectPage() {
           )}
 
           <div className="project-detail-content reveal">
-            {project.challenge && (
-              <section aria-labelledby="project-challenge">
-                <h2 id="project-challenge">Problema encontrado</h2>
-                <p>{project.challenge}</p>
-              </section>
-            )}
-            {project.solution && (
-              <section aria-labelledby="project-solution">
-                <h2 id="project-solution">Solução executada</h2>
-                <p>{project.solution}</p>
-              </section>
-            )}
-            {project.services.length > 0 && (
-              <section aria-labelledby="project-services">
-                <h2 id="project-services">Serviços realizados</h2>
-                <ul className="project-services-list">
-                  {project.services.map(service => <li key={service}>{service}</li>)}
-                </ul>
-              </section>
-            )}
-            {project.result && (
-              <section aria-labelledby="project-result">
-                <h2 id="project-result">Resultado final</h2>
-                <p>{project.result}</p>
-              </section>
-            )}
+            <div className="project-detail-grid">
+              {project.challenge && (
+                <section className="project-detail-card" aria-labelledby="project-challenge">
+                  <div className="project-detail-card-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 3v18" />
+                      <path d="M3 7h18" />
+                      <path d="M7 3h10" />
+                      <path d="M7 21h10" />
+                    </svg>
+                  </div>
+                  <h2 id="project-challenge">Desafio</h2>
+                  <p>{project.challenge}</p>
+                </section>
+              )}
+              {project.services.length > 0 && (
+                <section className="project-detail-card" aria-labelledby="project-services">
+                  <div className="project-detail-card-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M4 7h16" />
+                      <path d="M7 3h10" />
+                      <path d="M7 21h10" />
+                      <path d="M6 11h12" />
+                      <path d="M6 15h8" />
+                    </svg>
+                  </div>
+                  <h2 id="project-services">Serviço executado</h2>
+                  <ul className="project-services-list">
+                    {project.services.map(service => <li key={service}>{service}</li>)}
+                  </ul>
+                </section>
+              )}
+              {project.solution && (
+                <section className="project-detail-card" aria-labelledby="project-solution">
+                  <div className="project-detail-card-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14" />
+                      <path d="m12 5 7 7-7 7" />
+                    </svg>
+                  </div>
+                  <h2 id="project-solution">Solução</h2>
+                  <p>{project.solution}</p>
+                </section>
+              )}
+              {project.result && (
+                <section className="project-detail-card" aria-labelledby="project-result">
+                  <div className="project-detail-card-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="m5 13 4 4L19 7" />
+                      <path d="M11 17h8" />
+                    </svg>
+                  </div>
+                  <h2 id="project-result">Resultado</h2>
+                  <p>{project.result}</p>
+                </section>
+              )}
+            </div>
           </div>
 
           <div className="project-detail-actions reveal">

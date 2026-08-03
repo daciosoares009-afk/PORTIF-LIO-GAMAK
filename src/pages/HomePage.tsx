@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { ArrowUpRight, Mail, Phone } from 'lucide-react'
+import { DifferentialsSection } from '../components/DifferentialsSection'
 import { FeaturedProjects } from '../components/FeaturedProjects'
 import { Hero } from '../components/Hero'
+import { ProcessSection } from '../components/ProcessSection'
 import { ProjectGallery } from '../components/ProjectGallery'
 import { SectionHeading } from '../components/SectionHeading'
 import { ServicesSection } from '../components/ServicesSection'
@@ -66,8 +68,6 @@ export function HomePage() {
     <>
       <div ref={progressRef} className="page-progress" aria-hidden="true" />
       <Hero />
-      <FeaturedProjects />
-      <ProjectGallery />
 
       <section id="empresa" className="section about-section">
         <div className="container about-grid">
@@ -102,6 +102,10 @@ export function HomePage() {
       </section>
 
       <ServicesSection />
+      <FeaturedProjects />
+      <ProjectGallery />
+      <ProcessSection />
+      <DifferentialsSection />
 
       <section id="contato" className="section portfolio-contact">
         <div className="container portfolio-contact-layout reveal">
