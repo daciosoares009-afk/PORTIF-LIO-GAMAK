@@ -3,6 +3,7 @@ import { Layout } from './components/Layout'
 import { PageMeta } from './components/PageMeta'
 import { company } from './config/company'
 import { HomePage } from './pages/HomePage'
+import { NotFoundPage } from './pages/NotFoundPage'
 import { ProjectPage } from './pages/ProjectPage'
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
             )}
           />
           <Route path="projetos/:slug" element={<ProjectPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

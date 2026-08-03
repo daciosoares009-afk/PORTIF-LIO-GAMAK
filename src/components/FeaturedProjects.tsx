@@ -24,7 +24,7 @@ export function FeaturedProjects() {
               className={`featured-project reveal${index % 2 === 1 ? ' featured-project--reverse' : ''}`}
               style={{ '--delay': `${index * 80}ms` } as React.CSSProperties}
             >
-              <Link to={`/projetos/${project.slug}`} className="featured-project-visual" tabIndex={-1} aria-hidden="true">
+              <div className="featured-project-visual" aria-hidden="true">
                 <ProjectImage
                   src={project.coverImage}
                   srcSet={projectSrcSetFromPath(project.coverImage, project.imageBase)}
@@ -34,7 +34,7 @@ export function FeaturedProjects() {
                   width={816}
                   height={612}
                 />
-              </Link>
+              </div>
               <div className="featured-project-copy">
                 <span className="featured-project-category">{CATEGORY_LABELS[project.category]}</span>
                 <h3 id={index === 0 ? 'featured-projects-title' : undefined}>{project.title}</h3>

@@ -52,6 +52,7 @@ export function ProjectPage() {
         title={`${project.title} | GAMAK Soluções em Engenharia`}
         description={project.description}
         image={`${company.website}${project.coverImage}`}
+        canonical={`${company.website}/projetos/${project.slug}`}
       />
       <article className="section project-detail">
         <div className="container">

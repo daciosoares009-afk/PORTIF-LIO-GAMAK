@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useId, useRef, useState, type KeyboardEvent } from 'react'
 import { ProjectImage } from './ProjectImage'
 
 type BeforeAfterSliderProps = {
@@ -12,6 +12,7 @@ export function BeforeAfterSlider({ before, after, altBefore, altAfter }: Before
   const containerRef = useRef<HTMLDivElement>(null)
   const [position, setPosition] = useState(50)
   const dragging = useRef(false)
+  const rangeId = useId()
 
   const updatePosition = useCallback((clientX: number) => {
     const container = containerRef.current
@@ -38,6 +39,21 @@ export function BeforeAfterSlider({ before, after, altBefore, altAfter }: Before
     }
   }, [updatePosition])
 
+  const updatePositionByKey = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'ArrowLeft') {
+      setPosition(current => Math.max(0, current - 5))
+    }
+    if (event.key === 'ArrowRight') {
+      setPosition(current => Math.min(100, current + 5))
+    }
+    if (event.key === 'Home') {
+      setPosition(0)
+    }
+    if (event.key === 'End') {
+      setPosition(100)
+    }
+  }
+
   return (
     <div
       ref={containerRef}
@@ -59,6 +75,20 @@ export function BeforeAfterSlider({ before, after, altBefore, altAfter }: Before
       </div>
       <span className="before-after-label before-after-label--before">Antes</span>
       <span className="before-after-label before-after-label--after">Depois</span>
+      <div className="before-after-controls">
+        <label htmlFor={rangeId} className="sr-only">Ajustar comparação antes e depois</label>
+        <input
+          id={rangeId}
+          type="range"
+          min={0}
+          max={100}
+          step={1}
+          value={position}
+          onChange={event => setPosition(Number(event.target.value))}
+          onKeyDown={updatePositionByKey}
+          aria-label="Ajustar comparação antes e depois"
+        />
+      </div>
     </div>
   )
 }
