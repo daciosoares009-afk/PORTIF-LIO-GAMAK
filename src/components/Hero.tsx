@@ -4,11 +4,6 @@ import { whatsappUrl } from '../config/company'
 export function Hero() {
   return (
     <section id="inicio" className="hero" aria-labelledby="hero-title">
-      <picture className="hero-media" aria-hidden="true">
-        <source media="(max-width: 600px)" srcSet="/images/projects/optimized/projeto-esteira-rolante-03-480.webp" />
-        <source media="(max-width: 1100px)" srcSet="/images/projects/optimized/projeto-esteira-rolante-03-960.webp" />
-        <img src="/images/projects/optimized/projeto-esteira-rolante-03-1440.webp" alt="" width="1080" height="1920" fetchPriority="high" />
-      </picture>
       <div className="hero-blueprint" aria-hidden="true"><i /><i /><i /></div>
       <div className="container hero-layout">
         <div className="hero-copy">

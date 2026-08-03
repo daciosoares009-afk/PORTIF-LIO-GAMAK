@@ -28,15 +28,14 @@ const images = [
 
 await mkdir(outputDir, { recursive: true })
 
-for (const [source, name] of images) {
+await Promise.all(images.flatMap(([source, name]) => {
   const input = path.join(sourceDir, source)
-  for (const width of [480, 960, 1440]) {
-    await sharp(input)
-      .rotate()
-      .resize({ width, withoutEnlargement: true })
-      .webp({ quality: width === 1440 ? 84 : 80, effort: 5 })
-      .toFile(path.join(outputDir, `${name}-${width}.webp`))
-  }
-}
+  return [480, 960, 1440].map(width => sharp(input)
+    .rotate()
+    .resize({ width, withoutEnlargement: true, kernel: sharp.kernel.lanczos3 })
+    .sharpen(width === 480 ? 0.35 : 0.5)
+    .webp({ quality: width === 480 ? 89 : width === 960 ? 91 : 92, effort: 4, smartSubsample: true })
+    .toFile(path.join(outputDir, `${name}-${width}.webp`)))
+}))
 
 console.log(`Generated ${images.length * 3} optimized images in ${outputDir}`)
