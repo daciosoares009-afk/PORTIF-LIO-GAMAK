@@ -19,6 +19,7 @@ function App() {
                   title="GAMAK | Obras, instalações e manutenções"
                   description={company.description}
                   image={`${company.website}/images/brand/gamak-logo-oficial.png`}
+                  canonical={company.website}
                 />
                 <HomePage />
               </>

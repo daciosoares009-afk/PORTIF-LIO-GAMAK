@@ -38,6 +38,7 @@ export function PageMeta({ title, description, image, canonical }: PageMetaProps
     }
     if (canonical) {
       setLink('canonical', canonical)
+      setMeta('meta[property="og:url"]', canonical, 'content')
     }
 
     return () => {

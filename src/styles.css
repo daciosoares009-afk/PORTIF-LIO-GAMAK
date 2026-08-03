@@ -297,7 +297,8 @@ section[id], article[id] { scroll-margin-top: 110px; }
 .featured-project-copy h3 { margin: 0; font-size: clamp(2rem, 3vw, 2.4rem); line-height: 1.05; }
 .featured-project-lead { margin: 0; max-width: 680px; color: var(--muted); line-height: 1.8; }
 .featured-project-details { display: grid; gap: 18px; padding: 24px 0 0; border-top: 1px solid var(--line); }
-.featured-project-details dt { color: var(--gold-text); font-size: 0.75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 8px; }
+.featured-project-details > div { display: grid; gap: 10px; padding: 18px; border: 1px solid var(--line); background: color-mix(in srgb, var(--surface) 90%, transparent); }
+.featured-project-details dt { color: var(--gold-text); font-size: 0.75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 0; }
 .featured-project-details dd { margin: 0; color: var(--ink); font-size: 0.98rem; line-height: 1.75; }
 .featured-project-link { display: inline-flex; align-items: center; gap: 10px; color: var(--gold-text); font-weight: 700; margin-top: 10px; }
 .featured-project-link svg { width: 16px; transition: transform var(--fast); }
