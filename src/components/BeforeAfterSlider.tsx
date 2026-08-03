@@ -22,11 +22,6 @@ export function BeforeAfterSlider({ before, after, altBefore, altAfter }: Before
   }, [])
 
   useEffect(() => {
-    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reducedMotion) setPosition(50)
-  }, [])
-
-  useEffect(() => {
     const onPointerMove = (event: PointerEvent) => {
       if (!dragging.current) return
       updatePosition(event.clientX)

@@ -4,10 +4,10 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import { company, whatsappUrl } from '../config/company'
 import { CATEGORY_LABELS, getProjectBySlug } from '../data/projects'
 import { projectSrcSetFromPath } from '../utils/projectImages'
-import { BeforeAfterSlider } from './BeforeAfterSlider'
-import { PageMeta } from './PageMeta'
-import { PortfolioCta } from './PortfolioCta'
-import { ProjectImage } from './ProjectImage'
+import { BeforeAfterSlider } from '../components/BeforeAfterSlider'
+import { PageMeta } from '../components/PageMeta'
+import { PortfolioCta } from '../components/PortfolioCta'
+import { ProjectImage } from '../components/ProjectImage'
 
 export function ProjectPage() {
   const { slug } = useParams<{ slug: string }>()
@@ -16,8 +16,9 @@ export function ProjectPage() {
   const galleryRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    setActiveImage(0)
+    const frame = requestAnimationFrame(() => setActiveImage(0))
     scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
+    return () => cancelAnimationFrame(frame)
   }, [slug])
 
   if (!project) return <Navigate to="/#projetos" replace />

@@ -23,7 +23,6 @@ export function Header() {
     addEventListener('scroll', onScroll, { passive: true })
 
     if (!isHome) {
-      setActive('')
       return () => removeEventListener('scroll', onScroll)
     }
 
